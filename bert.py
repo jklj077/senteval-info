@@ -125,6 +125,7 @@ def get_hidden_batch(params, batch, func=lambda x: torch.mean(x, dim=0)):
     batch_ids = []
     lens = []
     for example in batch:
+        # print(example)
         example = " ".join(example)
         tokens = params.tokenizer.tokenize(example)
         tokens = ["[CLS]"] + tokens + ["[SEP]"]
@@ -176,6 +177,7 @@ def get_hidden(params, batch, func=lambda x: torch.mean(x, dim=0)):
     hiddens = []
     with torch.no_grad():
         for example in batch:
+
             example = " ".join(example)
             tokens = params.tokenizer.tokenize(example)
             tokens = ["[CLS]"] + tokens + ["[SEP]"]
@@ -564,7 +566,7 @@ def main():
             "OddManOut",
             "CoordinationInversion",
         ]
-        #results = se.eval(["SNLI"])
+        # results = se.eval(["ImageCaptionRetrieval"])
         results = se.eval(transfer_tasks + probe_tasks)
         print(results)
         logging.info("total results: %s", str(results).replace("\n", " "))
