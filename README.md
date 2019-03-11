@@ -2,93 +2,109 @@
 
 Using SentEval to evaluate the word vectors and hidden vectors of pretrained models for natural language processing.
 
-To aggregate the hidden vectors of a sentence to a single vector, three methods are used: using the vector at the first position, using the average across the sentence, and using the maximum across the sentence.
+To aggregate the hidden vectors of a sentence to a single vector, three methods are used: using the vector at the first position ([CLS] symbol), using the vector at the last position ([SEP] symbol), using the average across the sentence, and using the maximum across the sentence.
 
 ## Bert-base-uncased
 
-There are 12 layers in the bert-base-uncased model, denoted as 1-12. The word vectors are also included, denoted as 0.
+There are 12 layers in the bert-base-uncased model, denoted as 1-12. The word vectors are also included, denoted as 0. Modified codes from huggingface and pretrained model from goolge are used. The colors in the heatmaps are normalized to show the trend across layers.
 
-### Semantic textual similarity
+### Semantic Relatedness
 
-#### first
 
-| Layer | STS12         | STS13         | STS14         | STS15         | STS16         | STS B                | SICK-R               |
-| ----- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------------- | -------------------- |
-| 0     | nan           | nan           | nan           | nan           | nan           | 0/0/2.47             | 0/0/1.02             |
-| 1     | 0.1588/0.2148 | 0.0802/0.1507 | 0.1027/0.1904 | 0.1207/0.2486 | 0.1070/0.3009 | 0.49/0.48/2.00       | 0.72/0.67/0.49       |
-| 2     | 0.2528/0.2865 | 0.1183/0.1928 | 0.1720/0.2469 | 0.1924/0.3205 | 0.2312/0.3795 | 0.53/0.52/1.98       | 0.73/0.68/0.17       |
-| 3     | 0.2415/0.2951 | 0.1301/0.2172 | 0.1511/0.2486 | 0.1533/0.3165 | 0.2024/0.4121 | 0.5413/0.5348/1.9346 | 0.7527/0.6884/0.4449 |
-| 4     | **0.3851/0.4340** | 0.2953/**0.3733** | 0.3721/**0.4165** | 0.3249/**0.4698** | 0.4394/**0.5900** | **0.6425**/**0.6385**/**1.6652** | **0.7722/0.6981/0.4109** |
-| 5     | 0.3716/0.3977 | **0.3282**/0.3517 | **0.3574**/0.3640 | **0.3770**/0.4498 | **0.5118**/0.5899 | 0.6203/0.6151/1.6715 | 0.7556/0.6920/0.4419 |
-| 6     | 0.3096/0.3194 | 0.3093/0.3105 | 0.3109/0.3103 | 0.3361/0.3602 | 0.4634/0.5306 | 0.5122/0.5075/1.8177 | 0.7210/0.6577/0.4989 |
-| 7     | 0.2754/0.2926 | 0.2199/0.2220 | 0.2761/0.2702 | 0.2977/0.3218 | 0.4439/0.5012 | 0.4656/0.4629/1.9249 | 0.6971/0.6422/0.5263 |
-| 8     | 0.2631/0.2760 | 0.2187/0.2142 | 0.2613/0.2579 | 0.3058/0.3242 | 0.4306/0.4796 | 0.4428/0.4408/2.0199 | 0.6872/0.6351/0.5386 |
-| 9     | 0.2668/0.2925 | 0.2437/0.2365 | 0.2737/0.2652 | 0.3277/0.3388 | 0.4366/0.4641 | 0.4274/0.4287/2.0439 | 0.6943/0.6385/0.5349 |
-| 10    |  0.2601/0.2874|0.2766/0.2699|0.2956/0.2855|0.3552/0.3564|0.4488/0.4722|0.4290/0.4301/1.9941|0.6787/0.6358/0.5520|
-| 11    |    0.2636/0.2904|0.2851/0.2803|0.3063/0.2969|0.3689/0.3663|0.4679/0.4890|0.4103/0.4094/2.0884|0.6806/0.6284/0.5580|
-| 12    |     0.2727/0.3133|0.2545/0.2601|0.2774/0.2816|0.3267/0.3470|0.4801/0.5275|0.4651/0.4669/2.0350|0.6946/0.6415/0.5268|
-
-### Classification
+SkipThought-LN < GloVe BoW < fastText Bow < InferSent < Char-phrase
 
 #### first
 
-| Layer | MR    | CR    | SUBJ  | MPQA  | SST-B | SST-F | TREC  | SICK-E | SNLI | MRPC        |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ------ | ---- | ----------- |
-| 0     | 50    | 63.76 | 50    | 68.77 | 49.92 | 28.64 | 18.8  | 56.69  |      | 66.49/79.87 |
-| 1     | 54.12 | 64.16 | 82.41 | 81.85 | 70.57 | 30.72 | 62.2  | 68.95  |      | 68.93/80.03 |
-| 2     | 63.21 | 65.75 | 89.34 | 82.04 | 77.32 | 35.29 | 70.6  | 66.02  |      | 66.78/72.78 |
-| 3     | 66.26 | 65.75 | 87.94 | 82.32 | 73.48 | 36.02 | 75.2  | 67.77  |      | 71.83/80.94 |
-| 4     | 65.33 | 64.03 | 91.02 | 81.84 | 76.83 | 37.38 | 67.8  | **74.08** |      | 67.54/80.35 |
-| 5     | 68.13 | 69.38 | 92.68 | 84.5  | 77.81 | 38.73 | 79.2  | 70.98  |      | 67.42/75.46 |
-| 6     | 70.79 | 70.57 | 93.85 | 86.19 | 77.81 | 41.49 | 86.0  | 72.17 |      | **71.88**/**81.17** |
-| 7     | 73.03 | 75.74 | 94.35 | 86.0  | 78.14 | 42.76 | 86.6  | 71.48  |      | 68.06/80.54 |
-| 8     | 75.52 | 75.18 | 93.8  | 86.61 | 78.69 | 42.58 | 87.2  | 71.69  |      | 68.17/76.65 |
-| 9     | 77.88 | 81.77 | 94.58 | **87.76** | 80.83 | 41.67 | 86.80 | 71.75  |      | 71.07/81.12 |
-| 10    | **79.30** |84.21|**94.85**|87.27|82.04|42.04|88.40|69.92|na|69.68/77.75|
-| 11    |    78.31|**85.09**|94.10|86.14|**83.80**|**43.71**|**87.00**|71.40|na|66.55/79.90|
-| 12    |     79.23|84.74|94.70|87.57|83.20|43.21|87.00|68.56|na|69.74/78.52|
+Some NaNs are encountered at the word embedding layer (white cells). L4 or L5 are the best performing layers, but are still not favorable. 
+
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-first-relatedness.png)
+
+ 
+
+#### last
+
+Results are better than _first_. Best performing layers spread from L4 to L8. Notice that the last layer (L12) performs worse than the last layer of _first_.
+
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-last-relatedness.png)
 
 
 
-### COCO
+#### max
 
-#### first
+Good performance for L0, L1, and L2. They are the bottom layers.
 
-| layer | r@1 i2t | r@5 i2t | r@10 i2t | medr i2t | r@1 t2i | r@5 t2i | r@10 t2i | medr t2i |
-| ----- | ------- | ------- | -------- | -------- | ------- | ------- | -------- | -------- |
-| 0     |         |         |          |          |         |         |          |          |
-| 1     |         |         |          |          |         |         |          |          |
-| 2     |         |         |          |          |         |         |          |          |
-| 3     |         |         |          |          |         |         |          |          |
-| 4     |         |         |          |          |         |         |          |          |
-| 5     |         |         |          |          |         |         |          |          |
-| 6     |         |         |          |          |         |         |          |          |
-| 7     |         |         |          |          |         |         |          |          |
-| 8     |         |         |          |          |         |         |          |          |
-| 9     |         |         |          |          |         |         |          |          |
-| 10    |         |         |          |          |         |         |          |          |
-| 11    |         |         |          |          |         |         |          |          |
-| 12    |         |         |          |          |         |         |          |          |
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-max-relatedness.png)
 
+#### mean
 
+Good performance for L1 and L2, better than _max_. In general, better than fasttext BoW, on par with InferSent. They are almost the bottom layers.
 
-### Probing
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-mean-relatedness.png)
+
+### Text Classification
+
+GloVe < fastText < SkipThought < InferSent
 
 #### first
 
-| Layer | SentLen | WC    | TreeDepth | TopConst | BShift | Tense | SubjNum | ObjNum | SOMO  | CoordInv | Avg |
-| ----- | ------- | ----- | --------- | -------- | ------ | ----- | ------- | ------ | ----- | -------- | -------- |
-| 0     | 16.7    | 0.1   | 17.9      | 5.0      | 50.0   | 50.0  | 50.0    | 50.0   | 49.9  | 50       |        |
-| 1     | 71.9    | 0.8   | 26.1      | 51.0     | 50.0   | 78.2  | 73.4    | 71.9   | 49.9  | 51.8     |      |
-| 2     | 84.2    | 2.2   | 30.9      | 52.6     | 50.8   | 83.7  | 79.3    | 77.7   | 51.2  | 51.1     |      |
-| 3     | **87.2** | 1.9   | 30.2      | 48.0     | 51.9   | 85.5  | 79.0    | 77.4   | 53.9  | 53.8     |      |
-| 4     | 85.7    | 11.4  | 29.4      | 49.7     | 63.9   | 86.5  | 76.0    | 78.2   | 55.1  | 50.4     |      |
-| 5     | 75.0    | 10.5  | 29.8      | 68.3     | 81.1   | 88.7  | 84.3    | 79.2   | 57.9  | 54.6     |      |
-| 6     | 75.3    | 15.1  | 29.3      | 73.0     | 80.6   | 89.0  | **88.4** | 78.4   | 56.7  | 64.8     |      |
-| 7     | 68.9    | 23.0  | 30.0      | **76.7** | 81.2   | 89.3  | 87.6    | **79.5** | 57.6  | 68.6     |      |
-| 8     | 62.8    | 17.5  | **30.2**  | 75.8     | 81.4   | **89.7** | 87.4    | 78.2   | 57.1  | 69.4     |      |
-| 9     | 61.15   | 21.07 | 29.22     | 72.64    | 84.39  | 89.22 | 85.85 | 77.32  | 58.60 | 70.48    |     |
-| 10    |       57.91|25.76|25.56|74.39|84.84|88.69|85.38|73.55|60.29|**70.49**| 64.69|
-| 11    |     56.04|24.70|26.95|73.11|84.01|88.73|82.14|71.25|59.84|69.20|63.60  |
-| 12    |     54.90|**28.52**|27.54|69.12|**84.82**|89.01|81.33|74.38|**62.20**|69.44|64.13   |
+The higher, the better. Good performance, almost as good as SkipThought. Maybe the next sentece prediction task is essential for BERT?
+
+![bert-base-uncased-first-classification](pics/bert-base-uncased-first-classification.png)
+
+#### last
+
+The higher, the better. Not as good as _first_.
+
+![bert-base-uncased-first-classification](pics/bert-base-uncased-last-classification.png)
+
+#### max
+
+The higher, the better. Not as good as _last_.
+
+![bert-base-uncased-first-classification](pics/bert-base-uncased-max-classification.png)
+
+#### mean
+
+The higher, the better. Better than _first_, arguably better than SkipThought.
+
+![bert-base-uncased-first-classification](pics/bert-base-uncased-mean-classification.png)
+
+### Probing Tasks
+
+fastText BoW < NLI < SkipThought (except that SkipThought is realy bad at WC) < AutoEncoder < NMT < Seq2Tree. These reflect linguistic properties.
+
+#### first
+
+Not good. 
+
+![bert-base-uncased-first-probing](pics/bert-base-uncased-first-probing.png)
+
+#### last
+
+Worse.
+
+![bert-base-uncased-first-probing](pics/bert-base-uncased-last-probing.png)
+
+#### max
+
+Not good.
+
+![bert-base-uncased-first-probing](pics/bert-base-uncased-max-probing.png)
+
+#### mean
+
+Best performing. But still lag far behind NMT or Seq2Tree, on par with NLI pretraining of BiLSTM and GatedConvNet.
+
+![bert-base-uncased-first-probing](pics/bert-base-uncased-mean-probing.png)
+
+
+
+### Discussion/Hypothesis
+
+- BERT's downstream tasks are all classification tasks, so maybe it is not surprising to see its hidden layers without task specific fine-tuning is also very good at classification.
+- BERT's [CLS] vector and [SEP] vector embody a lot of information, maybe too much information. It may root from the next sentence prediction task, which makes use of the two vectors and which makes SkipThought succesful at classification task as well. (How does masked language modelling function here?)
+- BERT's hidden representation is not as good in Semantic Relatedness or Linguistic Properties as in Text Classification, similar to SkipThought or NLI pretraining. These aspects seem unimportant for classification tasks or extraction tasks; however, they may be important for generation.
+- From early observation on BERT attention distribution, it is also found that only the attention of the bottom layers are spread over the whole sentence and in higher layers, the tokens most attend to [CLS] and [SEP] symbols. It is possible that only the bottom layers are gathering and combining semantics, as shown by the semantic relatedness results. [CLS] and [SEP] become actual sentence representations in higher layers. Task-specific fine-tuning may change that, but how much? (BERT-base-uncased seems overfitting too fast on SQuAD fine-tuning.)
+
+TODO: evaluate bert-large-uncased
 
