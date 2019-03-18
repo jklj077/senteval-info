@@ -17,7 +17,7 @@ SkipThought-LN < GloVe BoW < fastText Bow < InferSent < Char-phrase. The higher,
 
 Some NaNs are encountered at the word embedding layer (white cells). L4 or L5 are the best performing layers, but are still not favorable. 
 
-![bert-base-uncased-first-relatedness](pics/bert-base-uncased-first-relatedness.png)
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-first-relatedness.svg)
 
  
 
@@ -25,21 +25,21 @@ Some NaNs are encountered at the word embedding layer (white cells). L4 or L5 ar
 
 Results are better than _first_. Best performing layers spread from L4 to L8. Notice that the last layer (L12) performs worse than the last layer of _first_.
 
-![bert-base-uncased-first-relatedness](pics/bert-base-uncased-last-relatedness.png)
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-last-relatedness.svg)
 
 
 
 #### max
 
-Good performance for L0, L1, and L2. They are the bottom layers.
+Good performance for L1, and L2, much better than _first_ and _last_. They are the bottom layers.
 
-![bert-base-uncased-first-relatedness](pics/bert-base-uncased-max-relatedness.png)
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-max-relatedness.svg)
 
 #### mean
 
 Good performance for L1 and L2, better than _max_. In general, better than fasttext BoW, on par with InferSent. They are almost the bottom layers.
 
-![bert-base-uncased-first-relatedness](pics/bert-base-uncased-mean-relatedness.png)
+![bert-base-uncased-first-relatedness](pics/bert-base-uncased-mean-relatedness.svg)
 
 ### Text Classification
 
@@ -49,25 +49,25 @@ GloVe < fastText < SkipThought < InferSent
 
 The higher, the better. Good performance, almost as good as SkipThought. Maybe the next sentece prediction task is essential for BERT?
 
-![bert-base-uncased-first-classification](pics/bert-base-uncased-first-classification.png)
+![bert-base-uncased-first-classification](pics/bert-base-uncased-first-classification.svg)
 
 #### last
 
-The higher, the better. Not as good as _first_.
+The best (L9) is better than _first_.
 
-![bert-base-uncased-first-classification](pics/bert-base-uncased-last-classification.png)
+![bert-base-uncased-first-classification](pics/bert-base-uncased-last-classification.svg)
 
 #### max
 
-The higher, the better. Not as good as _last_.
+Not as good as _last_.
 
-![bert-base-uncased-first-classification](pics/bert-base-uncased-max-classification.png)
+![bert-base-uncased-first-classification](pics/bert-base-uncased-max-classification.svg)
 
 #### mean
 
-The higher, the better. Better than _first_, arguably better than SkipThought.
+Better than _first_ and _last_, arguably better than SkipThought.
 
-![bert-base-uncased-first-classification](pics/bert-base-uncased-mean-classification.png)
+![bert-base-uncased-first-classification](pics/bert-base-uncased-mean-classification.svg)
 
 ### Probing Tasks
 
@@ -77,25 +77,25 @@ fastText BoW < NLI < SkipThought (except that SkipThought is realy bad at WC) < 
 
 Not good. 
 
-![bert-base-uncased-first-probing](pics/bert-base-uncased-first-probing.png)
+![bert-base-uncased-first-probing](pics/bert-base-uncased-first-probing.svg)
 
 #### last
 
 Worse.
 
-![bert-base-uncased-first-probing](pics/bert-base-uncased-last-probing.png)
+![bert-base-uncased-first-probing](pics/bert-base-uncased-last-probing.svg)
 
 #### max
 
 Not good.
 
-![bert-base-uncased-first-probing](pics/bert-base-uncased-max-probing.png)
+![bert-base-uncased-first-probing](pics/bert-base-uncased-max-probing.svg)
 
 #### mean
 
 Best performing. But still lag far behind NMT or Seq2Tree, on par with NLI pretraining of BiLSTM and GatedConvNet.
 
-![bert-base-uncased-first-probing](pics/bert-base-uncased-mean-probing.png)
+![bert-base-uncased-first-probing](pics/bert-base-uncased-mean-probing.svg)
 
 
 
@@ -120,7 +120,7 @@ SkipThought-LN < GloVe BoW < fastText Bow < InferSent < Char-phrase
 
 Some NaNs are encountered at the word embedding layer (white cells). L7-L9 are the best performing layers, but are still not favorable. 
 
-![bert-large-uncased-first-relatedness](pics/bert-large-uncased-first-relatedness.png)
+![bert-large-uncased-first-relatedness](pics/bert-large-uncased-first-relatedness.svg)
 
  
 
@@ -128,7 +128,7 @@ Some NaNs are encountered at the word embedding layer (white cells). L7-L9 are t
 
 Results are the worst. Best performing layers spread from L6-L7 and L14-L15. Notice that the last layer (L24) performs better than the last layer of _first_.
 
-![bert-large-uncased-first-relatedness](pics/bert-large-uncased-last-relatedness.png)
+![bert-large-uncased-first-relatedness](pics/bert-large-uncased-last-relatedness.svg)
 
 
 
@@ -136,13 +136,13 @@ Results are the worst. Best performing layers spread from L6-L7 and L14-L15. Not
 
 Good performance for L1-L3 and L9. They are the bottom layers.
 
-![bert-large-uncased-first-relatedness](pics/bert-large-uncased-max-relatedness.png)
+![bert-large-uncased-first-relatedness](pics/bert-large-uncased-max-relatedness.svg)
 
 #### mean
 
-Good performance for L1 and L6, better than _max_. In general, better than InferSent. They are almost the bottom layers.
+Good performance for L1-L6, better than _max_. In general, better than InferSent. They are almost the bottom layers.
 
-![bert-large-uncased-first-relatedness](pics/bert-large-uncased-mean-relatedness.png)
+![bert-large-uncased-first-relatedness](pics/bert-large-uncased-mean-relatedness.svg)
 
 ### Text Classification
 
@@ -152,25 +152,25 @@ GloVe < fastText < SkipThought < InferSent
 
 The higher, the better. Good performance. Really good at binary classification, better than InferSent. For others, as good as SkipThought. 
 
-![bert-large-uncased-first-classification](pics/bert-large-uncased-first-classification.png)
+![bert-large-uncased-first-classification](pics/bert-large-uncased-first-classification.svg)
 
 #### last
 
-As good as _first_.
+Worse than _first_.
 
-![bert-large-uncased-first-classification](pics/bert-large-uncased-last-classification.png)
+![bert-large-uncased-first-classification](pics/bert-large-uncased-last-classification.svg)
 
 #### max
 
-Not as good as _last_.
+Better than _last_.
 
-![bert-large-uncased-first-classification](pics/bert-large-uncased-max-classification.png)
+![bert-large-uncased-first-classification](pics/bert-large-uncased-max-classification.svg)
 
 #### mean
 
-The pattern indicates most useful information is contained in _first_ and _last_. Averaging hurts the performance.
+The pattern indicates most useful information is contained in _first_ and _last_. 
 
-![bert-large-uncased-first-classification](pics/bert-large-uncased-mean-classification.png)
+![bert-large-uncased-first-classification](pics/bert-large-uncased-mean-classification.svg)
 
 ### Probing Tasks
 
@@ -180,26 +180,29 @@ fastText BoW < NLI < SkipThought (except that SkipThought is realy bad at WC) < 
 
 Not good. 
 
-![bert-large-uncased-first-probing](pics/bert-large-uncased-first-probing.png)
+![bert-large-uncased-first-probing](pics/bert-large-uncased-first-probing.svg)
 
 #### last
 
 Worse.
 
-![bert-large-uncased-first-probing](pics/bert-large-uncased-last-probing.png)
+![bert-large-uncased-first-probing](pics/bert-large-uncased-last-probing.svg)
 
 #### max
 
 Not good.
 
-![bert-large-uncased-first-probing](pics/bert-large-uncased-max-probing.png)
+![bert-large-uncased-first-probing](pics/bert-large-uncased-max-probing.svg)
 
 #### mean
 
 Best performing. But still lag far behind NMT or Seq2Tree, on par with NLI pretraining of BiLSTM and GatedConvNet. Notice the WC has positive correlation with most downstream tasks.
 
-![bert-large-uncased-first-probing](pics/bert-large-uncased-mean-probing.png)
+![bert-large-uncased-first-probing](pics/bert-large-uncased-mean-probing.svg)
 
 
+### Discussion
 
+- More layers do not learn better linguistic patterns or semantic relatedness per se. However, they do improve the performance of _first_ or _last_ methods.
+- More layers do improve classification results, by about 2 absolute points. The result pattern is almost the same among _first_, _last_, _max_, and _mean_ for each task across layers. Especially, considering the average performance across tasks, the best results are always achieved by near the top layers.
 
