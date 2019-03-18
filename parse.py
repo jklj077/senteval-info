@@ -24,12 +24,13 @@ def draw_heatmap(labels, values, title, verbose=False):
     )[np.newaxis, :]
 
     fig, ax = plt.subplots()
-    im = ax.imshow(normalized_values)
+    im = ax.imshow(normalized_values, aspect="auto", cmap=plt.get_cmap("Blues"))
 
     for i in range(len(layers)):
         for j in range(len(labels)):
+            color = "black" if normalized_values[i, j] < 0.5 else "white"
             text = ax.text(
-                j, i, values[i, j], ha="center", va="center", color="w"
+                j, i, values[i, j], ha="center", va="center", color=color
             )
 
     ax.set_xticks(np.arange(len(labels)))
@@ -86,7 +87,7 @@ def parse(file, verbose=False):
 
     draw_heatmap(relatedness_labels, relatedness_values, file, verbose)
     draw_heatmap(classification_labels, classification_values, file, verbose)
-    draw_heatmap(coco_labels, coco_values, file, verbose)
+    # draw_heatmap(coco_labels, coco_values, file, verbose)
     draw_heatmap(probe_labels, probe_values, file, verbose)
 
 
@@ -96,3 +97,7 @@ if __name__ == "__main__":
     parse("logs/log-max-bert-base-uncased.txt", True)
     parse("logs/log-mean-bert-base-uncased.txt", True)
 
+    # parse("logs/log-first-bert-large-uncased.txt", True)
+    # parse("logs/log-last-bert-large-uncased.txt", True)
+    # parse("logs/log-max-bert-large-uncased.txt", True)
+    # parse("logs/log-mean-bert-large-uncased.txt", True)
