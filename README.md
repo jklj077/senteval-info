@@ -1,8 +1,8 @@
-# SentEval
+# Evaluating BERT with SentEval
 
 Using SentEval to evaluate the word vectors and hidden vectors of pretrained models for natural language processing.
 
-To aggregate the hidden vectors of a sentence to a single vector, three methods are used: using the vector at the first position ([CLS] symbol), using the vector at the last position ([SEP] symbol), using the average across the sentence, and using the maximum across the sentence.
+To aggregate the hidden vectors of a sentence to a single vector, four methods are used: using the vector at the first position ([CLS] symbol), using the vector at the last position ([SEP] symbol), using the average across the sentence, and using the maximum across the sentence.
 
 ## Bert-base-uncased
 
